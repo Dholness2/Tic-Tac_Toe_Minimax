@@ -15,7 +15,7 @@ $ Ruby run.rb
 ```
 ## For Test
 ```
-$ cd Tic_Tac_Toe
+$ cd Tic_Tac_Toe/lib
 $ rspec
 ```
 

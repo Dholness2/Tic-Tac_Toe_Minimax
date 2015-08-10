@@ -29,7 +29,8 @@ class TicTacController
       end
       view.clear
       view.display tic_tac_toe
-    end
-    view.display "#{tic_tac_toe.winner} "+ "\n"
+       view.display "Result : #{tic_tac_toe.winner} "+ "\n"
+     end
+
   end
 end

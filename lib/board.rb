@@ -56,7 +56,7 @@ class Board
 
   def winner
     if  row_check(board)
-      return row_check(board)
+      return "WINNER!"+ row_check(board)
     elsif row_check(board.transpose)
       return "WINNER!" + row_check(board.transpose)
     elsif diagnoal_check()
@@ -68,4 +68,3 @@ class Board
     end
   end
 end
-
