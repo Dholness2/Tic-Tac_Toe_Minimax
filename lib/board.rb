@@ -5,17 +5,19 @@ class Board
     @board_size = args[:board_size]
     @board = Array.new((@board_size)){Array.new(@board_size ,"_")}
     @move_count = 0
-    end
+  end
 
   def to_s
     board.map{|row| row.join("|")+"\n"}.join("")
   end
 
-
+  def copy_state
+    board_state = Board.new(:board_size=>3)
+    board_state.board = Marshal::load(Marshal.dump(board.board))
+    board_state
+  end
   def move (player,location)
-
     return nil if location < 0 || location > ((board_size*board_size)-1)
-
     cordinates = location.divmod(board_size)
     x  = cordinates[1]
     y =  cordinates[0]
@@ -83,4 +85,3 @@ end
 #  b.move("y",1)
 # print test_board
 # print test_board.winner
-
