@@ -56,11 +56,11 @@ class Board
 
   def winner
     if  row_check(board)
-      return "WINNER!"+ row_check(board)
+      return row_check(board)
     elsif row_check(board.transpose)
-      return "WINNER!" + row_check(board.transpose)
+      return  row_check(board.transpose)
     elsif diagnoal_check()
-      return "WINNER!"+ diagnoal_check()
+      return  diagnoal_check()
     elsif draw?
       return "draw"
     else
