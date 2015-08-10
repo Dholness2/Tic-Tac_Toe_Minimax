@@ -1,10 +1,10 @@
 require_relative "board"
 class Computer
-  attr_accessor :choice
+  attr_accessor :move
   def initialize (args)
     @maximizing_player = args[:max_player]
     @minimizing_player = args[:mini_player]
-    @choice
+    @move
   end
 
   def avaliable_moves(board)
@@ -32,7 +32,7 @@ class Computer
       end
 
       max_score_index = scores.each_with_index.max[1]
-      @choice = moves[max_score_index]
+      @move = moves[max_score_index]
       return scores[max_score_index]
     else
       avaliable_moves(board).each do |current_move|
@@ -42,26 +42,9 @@ class Computer
         moves.push current_move
       end
       min_score_index = scores.each_with_index.min[1]
-      @choice = moves[min_score_index]
+      @move = moves[min_score_index]
       return scores[min_score_index]
     end
   end
 end
 
-# test_board = Board.new(:board_size=> 3)
-
-# test_board.move("x",0)
-# test_board.move("y",3)
-# test_board.move("x",1)
-
-
-# print test_board
-#  p test_board.winner
-
-#  y ="y"
-#  x = "x"
-#  test_ai = Computer.new y, x
-#  p test_ai.minimax(test_board,5,true)
-#  p test_ai.choice
-#  p test_board.winner
-# #  p test_board.board.transpose

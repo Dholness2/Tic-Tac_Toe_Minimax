@@ -1,21 +1,45 @@
 require 'spec_helper'
 
-  describe Board do
+describe Board do
+  let(:test_board) { test_board = Board.new(:board_size=> 3) }
+  it "takes the size of the board and returns a new board object"do
+    expect(test_board).to be_a Board
+  end
+  it "updates the board based on the paramaters added to move method" do
+    test_board.move("x",0)
+    expect(test_board.board[0][0]).to eq ("x")
+  end
+  it " it calculates any wins within the rows"do
+    [0,1,2].each{|move| test_board.move("x",move)}
+    expect(test_board.row_check(test_board.board)).to eq("x")
+  end
 
-    it "takes the size of the board and returns a new board object"do
-      test_board = Board.new(:board_size=> 3)
-      expect(test_board).to be_a Board
-    end
-    it "updates the board based on the paramaters added to move method"
+  it " it calculates any wins within the columns" do
+    [0,3,6].each{|move| test_board.move("o",move)}
+    expect(test_board.col_check).to eq("o")
+  end
+  it " it calculates any draws" do
+    [0,1,5,6,8].each{|move| test_board.move("x",move)}
+    [2,3,4,7].each{|move| test_board.move("o",move)}
+    expect(test_board.draw?).to be(true)
+  end
 
+  it " it returns winners"do
+    [3,4,5].each{|move| test_board.move("x",move)}
+    expect(test_board.row_check(test_board.board)).to eq("x")
+  end
+  it " check for diagnol wins(top_down)" do
+    [0,4,8].each{|move| test_board.move("x",move)}
+    expect(test_board.diagnoal_check).to eq("x")
+  end
+  it " check for diagnol wins(bottom_up)" do
+    [2,4,6].each{|move| test_board.move("y",move)}
+    expect(test_board.diagnoal_check).to eq("y")
+  end
+  it "it copys the current stat of the board, but does not refrence orginal object" do
+    [0,3,6].each{|move| test_board.move("o",move)}
+    copy = test_board.copy_state
+    expect(copy.board.object_id).not_to eq (test_board.board.object_id)
+  end
 
-    it " it calculates any wins within the rows"
-
-    it " it calculates any wins within the columns"
-
-    it " it calculates any draws"
-
-    it " it returns winners"
-
-
-    end
+end

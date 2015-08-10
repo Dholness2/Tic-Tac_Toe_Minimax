@@ -13,9 +13,10 @@ class Board
 
   def copy_state
     board_state = Board.new(:board_size=>3)
-    board_state.board = Marshal::load(Marshal.dump(board.board))
+    board_state.board = Marshal::load(Marshal.dump(board))
     board_state
   end
+
   def move (player,location)
     return nil if location < 0 || location > ((board_size*board_size)-1)
     cordinates = location.divmod(board_size)
@@ -57,9 +58,9 @@ class Board
     if  row_check(board)
       return row_check(board)
     elsif row_check(board.transpose)
-      return row_check(board.transpose)
+      return "WINNER!" + row_check(board.transpose)
     elsif diagnoal_check()
-      return diagnoal_check()
+      return "WINNER!"+ diagnoal_check()
     elsif draw?
       return "draw"
     else
@@ -67,21 +68,4 @@ class Board
     end
   end
 end
-# test_board = Board.new(:board_size=> 3)
 
-
-# test_board.move("y",2)
-# test_board.move("y",4)
-# test_board.move("y",8)
-# test_board.move("x",2)
-# test_board.move("x",6)
-# test_board.move("y",7)
-
-
-# print test_board
-
-# p b = test_board.current_state
-# p test_board.board.object_id
-#  b.move("y",1)
-# print test_board
-# print test_board.winner
