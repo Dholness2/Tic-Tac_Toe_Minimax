@@ -1,23 +1,27 @@
 class Board
-  attr_accessor :board
+  attr_accessor :board,:move_count
   attr_reader   :board_size
   def initialize (args)
     @board_size = args[:board_size]
     @board = Array.new((@board_size)){Array.new(@board_size ,"_")}
+    @move_count = 0
     end
 
   def to_s
     board.map{|row| row.join("|")+"\n"}.join("")
   end
 
+
   def move (player,location)
+
     return nil if location < 0 || location > ((board_size*board_size)-1)
+
     cordinates = location.divmod(board_size)
     x  = cordinates[1]
     y =  cordinates[0]
     return nil if !(board[y][x] == "_")
     board[y][x] = player
-    board
+    @move_count+=1
   end
 
   def draw?
