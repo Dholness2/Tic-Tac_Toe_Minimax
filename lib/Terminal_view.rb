@@ -7,7 +7,7 @@ class TerminalView
   puts "DON's TIC TAC TOE\n"
  end
  def key
- puts "Move key:\n1|2|3\n4|5|6\n7|8|9\n"
+ puts "Move key:\n0|1|2\n3|4|5\n6|7|8\n"
  puts " "
  end
   def clear
