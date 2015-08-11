@@ -1,6 +1,6 @@
 require_relative 'board'
 require_relative 'computer'
-require_relative 'Terminal_view'
+require_relative 'terminal_view'
 require_relative 'tic_tac_toe_controller'
 
 
