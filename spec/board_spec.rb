@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Board do
-  let(:test_board) { test_board = Board.new(:board_size=> 3) }
+  let(:test_board) { test_board = Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
   it "takes the size of the board and returns a new board object"do
     expect(test_board).to be_a Board
   end
@@ -9,6 +9,19 @@ describe Board do
     test_board.move("x",0)
     expect(test_board.board[0][0]).to eq ("x")
   end
+
+  it "will replace a filled position with "do
+        [0,3,6].each{|move| test_board.move("o",move)}
+        [0,3,6].each{|move| test_board.undo_move(move)}
+        expect(test_board.col_check).to eq(nil)
+
+  end
+
+  it " it will return all available moves"do
+      [0,3,6].each{|move| test_board.move("o",move)}
+      expect(test_board.available_moves).to eq([1,2,4,5,7,8])
+   end
+
   it " it calculates any wins within the rows"do
     [0,1,2].each{|move| test_board.move("x",move)}
     expect(test_board.row_check(test_board.board)).to eq("x")
@@ -36,10 +49,8 @@ describe Board do
     [2,4,6].each{|move| test_board.move("y",move)}
     expect(test_board.diagnoal_check).to eq("y")
   end
-  it "it copys the current stat of the board, but does not refrence orginal object" do
-    [0,3,6].each{|move| test_board.move("o",move)}
-    copy = test_board.copy_state
-    expect(copy.board.object_id).not_to eq (test_board.board.object_id)
-  end
+
+
+
 
 end

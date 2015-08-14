@@ -1,4 +1,6 @@
 require_relative 'board'
+require 'benchmark/ips'
+
 class Computer
   attr_accessor :move
   def initialize (args)
@@ -46,6 +48,45 @@ class Computer
       return scores[min_score_index]
     end
   end
+
+
+def minimax_two (board,depth, maximizing_player)
+    return score(depth,board) if board.winner
+    scores = {}
+
+    if maximizing_player
+      board.available_moves.each do |possible_move|
+        board.move(@maximizing_player,possible_move)
+        scores["#{possible_move}"] = minimax(board,depth+1,false)
+        board.undo_move(possible_move)
+      end
+
+      max_move = scores.max_by {|k,v| v}
+      @move = max_move[0]
+      return max_move[1]
+    else
+      board.available_moves.each do |possible_move|
+        board.move(@minimizing_player,possible_move)
+        scores["#{possible_move}"] = minimax(board,depth+1,false)
+        board.undo_move(possible_move)
+      end
+      min_move = scores.min_by {|k,v| v}
+      @move = min_move[0]
+      return min_move[1]
+    end
+  end
 end
+
+ test_board = Board.new(:board_size=> 3,:empty_position_placeholder=>"_")
+    [0].each{|move| test_board.move("o",move)}
+computer_marker ="o"
+user_marker ="x"
+whatson = Computer.new(:max_player => computer_marker,:mini_player => user_marker)
+
+  Benchmark.ips do |x|
+    x.report('available_moves_slow'){  whatson.minimax(test_board,1,"x")}
+    x.report('avaliable_moves_fast') { whatson.minimax_two(test_board,1,"x") }
+    x.compare
+  end
 
 

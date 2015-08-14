@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe Computer do
-  let(:test_board) { test_board = Board.new(:board_size=> 3) }
+  let(:test_board) { test_board = Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
   let (:test_computer) { test_computer= Computer.new(:max_player => "o",:mini_player => "x")}
+
+  it
 
   it "scores the game state(win) for maxmizing player" do
     [3,4,5].each{|move| test_board.move("o",move)}
