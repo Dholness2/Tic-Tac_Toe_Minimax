@@ -27,9 +27,9 @@ class Board
   end
 
   def available_moves
-     moves= []
-     board.flatten.each_with_index{|x,i| moves.push i if x =="_"}
-     moves
+    moves= []
+    board.flatten.each_with_index{|x,i| moves.push i if x =="_"}
+    moves
  end
 
   def draw?
