@@ -19,6 +19,12 @@ $ cd Tic_Tac_Toe
 $ rspec
 ```
 
+## To Run BenchMarks
+  $ bundle install
+
+# BenchMarks gem
+  'benchmark-ips', '>= 2.0'
+
 ## Ruby Version
 
 ruby 2.0.0p481 (2014-05-08 revision 45883)
