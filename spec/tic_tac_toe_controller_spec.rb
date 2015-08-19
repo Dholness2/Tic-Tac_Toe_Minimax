@@ -14,6 +14,7 @@ describe TicTacToeController do
 
   it "should  take the users next move and update the board " do
     test_view.input = StringIO.new("1")
+    test_view.output = StringIO.new()
     test_controller.get_user_move
     expect(test_board.board[0][0]).to eq(user_marker)
   end

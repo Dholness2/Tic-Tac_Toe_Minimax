@@ -10,6 +10,14 @@ describe Board do
     expect(test_board.board[0][0]).to eq ("x")
   end
 
+  it " returns nil for non integers" do
+    expect(test_board.move("x","z")).to eq (nil)
+  end
+
+  it "it return for nil for moves outside of board scope"do
+    expect(test_board.move("x",100)).to eq (nil)
+  end
+
   it "will replace a filled position with " do
     [0,3,6].each{|move| test_board.move("o",move)}
     [0,3,6].each{|move| test_board.undo_move(move)}

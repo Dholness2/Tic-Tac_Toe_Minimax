@@ -28,11 +28,4 @@ describe TerminalView do
     test_view.input = StringIO.new("1")
     expect(test_view.get_move).to eq(0)
   end
-
-  it "validates the users input and returns invalid if input is not matching key[1-9] " do
-    test_view.input = StringIO.new("k")
-    test_view.output = StringIO.new
-    expect(test_view.get_move).to eq(nil)
-    expect(test_view.output.string).to eq("Error\n")
-  end
 end
