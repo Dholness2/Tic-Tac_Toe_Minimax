@@ -24,7 +24,6 @@ class Computer
         moves.push possible_move
         board.undo_move(possible_move)
       end
-
       max_score_index = scores.each_with_index.max[1]
       @move = moves[max_score_index]
       return scores[max_score_index]

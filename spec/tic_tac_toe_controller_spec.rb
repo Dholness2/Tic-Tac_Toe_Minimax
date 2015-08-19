@@ -4,7 +4,7 @@ describe TicTacToeController do
   let(:computer_marker){"o"}
   let(:test_board) { Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
   let(:test_computer) {Computer.new(:max_player => "o",:mini_player => "x")}
-  let(:test_view) { TerminalView.new}
+  let(:test_view) { TerminalView.new()}
   let(:test_controller) { TicTacToeController.new(:board_size=> 3,:empty_position_placeholder=>"_",:view =>test_view,:board => test_board,:computer=> test_computer)}
 
   it "should update the board based on paramaters" do

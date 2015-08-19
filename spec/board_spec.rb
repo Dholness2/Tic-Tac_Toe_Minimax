@@ -1,6 +1,5 @@
 require 'spec_helper'
 describe Board do
-
   let(:test_board) { test_board = Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
 
   it "takes the size of the board and returns a new board object" do

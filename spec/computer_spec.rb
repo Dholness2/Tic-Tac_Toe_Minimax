@@ -1,8 +1,11 @@
 require 'spec_helper'
-
 describe Computer do
   let(:test_board) { test_board = Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
   let (:test_computer) { test_computer= Computer.new(:max_player => "o",:mini_player => "x")}
+
+  it "Computer.new returns a new terminal object" do
+    expect(test_computer).to be_a Computer
+  end
 
   it "scores the game state(win) for maxmizing player" do
     [3,4,5].each{|move| test_board.move("o",move)}
