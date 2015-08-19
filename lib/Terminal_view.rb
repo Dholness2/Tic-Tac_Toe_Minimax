@@ -27,10 +27,9 @@ class TerminalView
   end
 
   def get_move
-    move = input.gets.chomp
+    move = input.gets
     return (move.to_i-1) if move =~/^[1-9]$/
-    output.puts "invalid selection, Enter new move:"
-    get_move
+    nil
   end
 
   def board board

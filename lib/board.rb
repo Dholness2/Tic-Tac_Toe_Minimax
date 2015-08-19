@@ -15,6 +15,7 @@ class Board
   end
 
   def move (player_marker,location)
+    return nil unless location.is_a? Integer
     return nil if location < 0 || location > ((board_size*board_size)-1)
     y,x = location.divmod(board_size)
     return nil if !(board[y][x] == empty_position_placeholder)
