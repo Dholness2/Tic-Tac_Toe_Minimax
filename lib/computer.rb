@@ -1,16 +1,9 @@
-require_relative 'board'
 class Computer
   attr_accessor :move
   def initialize (args)
     @maximizing_player = args[:max_player]
     @minimizing_player = args[:mini_player]
     @move
-  end
-
-  def avaliable_moves(board)
-    moves= []
-    board.board.flatten.each_with_index{|x,i| moves.push i if x =="_"}
-    moves
   end
 
   def score (depth,board)
@@ -48,5 +41,3 @@ class Computer
     end
   end
 end
-
-

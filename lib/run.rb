@@ -1,8 +1,8 @@
-require_relative 'board'
-require_relative 'computer'
-require_relative 'terminal_view'
-require_relative 'tic_tac_toe_controller'
-
+$: <<"."
+require 'board'
+require 'computer'
+require 'terminal_view'
+require 'tic_tac_toe_controller'
 
 computer_marker ="o"
 user_marker ="x"

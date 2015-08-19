@@ -6,7 +6,6 @@ class TicTacToeController
     @view = args[:view]
   end
 
-
   def update_board(marker,move)
     next_move = move
     tic_tac_toe.move(marker,next_move)
@@ -23,8 +22,8 @@ class TicTacToeController
 
   def get_computer_move
     whatson.minimax(tic_tac_toe,tic_tac_toe.move_count,true)
-     tic_tac_toe.move("o",whatson.move)
-      view.display "invalid move, computer error"
+    tic_tac_toe.move("o",whatson.move)
+    view.display "invalid move, computer error"
   end
 
   def get_home_view
@@ -39,7 +38,7 @@ class TicTacToeController
   end
 
   def run
-    until tic_tac_toe.winner
+    until win
       get_home_view
       get_user_move
       break if win
