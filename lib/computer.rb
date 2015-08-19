@@ -16,15 +16,16 @@ class Computer
   def score (depth,board)
     return 10 - depth  if board.winner == @maximizing_player
     return depth - 10  if board.winner == @minimizing_player
+    return 5 - depth   if board.available_moves
     draw = 0
   end
 
   def minimax (board,depth, maximizing_player)
-    return score(depth,board) if board.winner
+    return score(depth,board) if board.winner ||  depth == 4
     scores = []
     moves = []
     if maximizing_player
-      avaliable_moves(board).each do |possible_move|
+      board.available_moves.each do |possible_move|
         board.move(@maximizing_player,possible_move)
         scores.push minimax(board,depth+1,false)
         moves.push possible_move
@@ -35,7 +36,7 @@ class Computer
       @move = moves[max_score_index]
       return scores[max_score_index]
     else
-      avaliable_moves(board).each do |possible_move|
+      board.available_moves.each do |possible_move|
         board.move(@minimizing_player,possible_move)
         scores.push minimax(board,depth+1,true)
         moves.push possible_move
