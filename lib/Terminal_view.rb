@@ -6,33 +6,33 @@ class TerminalView
   end
 
   def welcome
-    puts "DON's TIC TAC TOE\n"
+    output.puts "DON's TIC TAC TOE\n"
   end
   def key
-    puts "Move key:\n1|2|3\n4|5|6\n7|8|9\n"
-    puts " "
+    output.puts "Move key:\n1|2|3\n4|5|6\n7|8|9\n"
+    output.puts " "
   end
   def clear
-    puts "\e[H\e[2J"
+    output.puts "\e[H\e[2J"
   end
 
-  def display output
-    puts output
+  def display message
+
+    output.puts message
   end
 
   def get_ans
-    gets.downcase
+    input.gets.downcase
   end
   def get_move
    "Select your move : \n"
     move = input.gets.chomp
-    return move.to_i if move =~/^[1-9]$/
-    output.puts "Invalid move"
+    return (move.to_i-1) if move =~/^[1-9]$/
+    output.puts "Error"
   end
 
   def board board
-   puts "#{board[0]}#{board[1]}#{board[2]}"
-   puts "#{board[3]}#{board[4]}#{board[5]}"
-   puts "#{board[6]}#{board[7]}#{board[7]}"
+   puts "#{board[0]}\n+#{board[1]}\n#{board[2]}"
+
  end
 end

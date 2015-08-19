@@ -1,52 +1,33 @@
- require 'spec_helper'
+require 'spec_helper'
 
- describe TicTacToeController do
+describe TicTacToeController do
   let(:user_marker) {"x"}
+  let(:computer_marker){"y"}
   let(:test_board) { Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
   let(:test_computer) {Computer.new(:max_player => "o",:mini_player => "x")}
   let(:test_view) { TerminalView.new}
-  let(:test_controller) { TicTacToeController.new(:board_size=> 3,:empty_position_placeholder=>"_",:view =>test_view,:board => test_board)}
+  let(:test_controller) { TicTacToeController.new(:board_size=> 3,:empty_position_placeholder=>"_",:view =>test_view,:board => test_board,:computer=> test_computer)}
 
 
-
-
-  it "should  take the users next move and update the board " do
-
-
-
+  it "should update the board based on paramaters" do
+        test_controller.update_board(user_marker,0)
+        expect(test_board.board[0][0]).to eq(user_marker)
   end
 
- #  it "should return invalid move when the user selects a non valid or unavialble position" do
- #      expect(board_update(user_marker,0)).to eq(test_board.board[0] == user_marker)
- #  end
+  it "should  take the users next move and update the board " do
+    test_view.input = StringIO.new("1")
+    test_controller.get_user_move
+    expect(test_board.board[0][0]).to eq(user_marker)
+  end
 
- # it " should update the board with the computers nect move" do
+  # it "should take the computer next move and update the board"do
+  #   test_controller.get_computer_move
+  #   expect(test_board.board[2][0]).to eq(computer_marker)
+  # end
 
- # end
+  it "should return true incase of a win"do
+      [0,3,6].each{|move| test_board.move(user_marker,move)}
+      expect(test_controller.win).to  be_truthy
+  end
 
-
- # it "should retutn invalid move if the computers move is invalid"do
-
- # end
-
-
- # it "sould ask the user if they  want to play again " do
-
- # end
-
-
- # it "should ask the user if they want to be X or O " do
- #      expect(get_marker).to eq(user_marker == "x")
- # end
-
-#  it "should keep count of the depth(number of moves) of the game"
-
-#  it "should determine if a row contains one unique string "
-
-#  it "should determine if a columns contains a unique string"
-
-#  it "should announce winners based on game rules"
-
-#  it " should restart the game"
-
- end
+end

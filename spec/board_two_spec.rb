@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe Board do
-  let(:test_board) { test_board = Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
+describe BoardTwo do
+  let(:test_board) { test_board = BoardTwo.new(:board_size=> 9,:empty_position_placeholder=>"_", :dimension=>3) }
   it "takes the size of the board and returns a new board object"do
-    expect(test_board).to be_a Board
+    expect(test_board).to be_a BoardTwo
   end
   it "updates the board based on the paramaters added to move method" do
     test_board.move("x",0)
-    expect(test_board.board[0][0]).to eq ("x")
+    expect(test_board.board[0]).to eq ("x")
   end
 
-  it "will replace a filled position with "do
-        [0,3,6].each{|move| test_board.move("o",move)}
+  it "will replace a filled position with " do
+        [0,3,6].each{|move| test_board.move("O",move)}
         [0,3,6].each{|move| test_board.undo_move(move)}
         expect(test_board.col_check).to eq(nil)
 
