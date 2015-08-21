@@ -46,7 +46,7 @@ class TicTacToeController
       get_home_view
       break if win
     end
-    view.display "Result : #{tic_tac_toe.winner} "+ "\n"
+    view.display "Result : #{tic_tac_toe.winner} "
   end
 
 end

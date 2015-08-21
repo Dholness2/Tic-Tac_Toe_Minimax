@@ -1,6 +1,6 @@
 class Computer
   attr_accessor :move
-  def initialize (args)
+  def initialize (args ={})
     @maximizing_player = args[:max_player]
     @minimizing_player = args[:mini_player]
     @move
@@ -9,12 +9,11 @@ class Computer
   def score (depth,board)
     return 10 - depth  if board.winner == @maximizing_player
     return depth - 10  if board.winner == @minimizing_player
-    return 5 - depth   if board.available_moves
     draw = 0
   end
 
   def minimax (board,depth, maximizing_player)
-    return score(depth,board) if board.winner ||  depth == 4
+    return score(depth,board) if board.winner ||  depth == 9
     scores = []
     moves = []
     if maximizing_player
