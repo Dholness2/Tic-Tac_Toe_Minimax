@@ -23,7 +23,7 @@ class TerminalView
   end
 
   def get_ans
-    input.gets.downcase
+    input.gets
   end
 
   def get_move

@@ -1,4 +1,5 @@
 class Player
+  attr_reader :move,:marker,:name
   def initialize(args={})
     @name = args[:name]
     @marker = args[:marker]
@@ -16,9 +17,4 @@ class Player
   def update_move input
     @move = input
   end
-
-  def get_move
-    @move
-  end
-
 end

@@ -1,11 +1,10 @@
 class Computer
-  attr_accessor :move
+  attr_accessor :move, :maximizing_marker, :minimizing_marker
   def initialize (args ={})
     @maximizing_marker = args[:max_marker]
     @minimizing_marker = args[:mini_marker]
     @move
   end
-
 
 def score (depth,board)
     return 10 - depth  if board.winner == @maximizing_marker

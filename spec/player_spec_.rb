@@ -9,6 +9,9 @@ describe Player do
     expect(test_player.set_marker("x")).to eq("x")
   end
 
+  it " sets the player's name" do
+    expect(test_player.set_name("donovan")).to eq("donovan")
+  end
 
   it "gets the player's marker" do
     test_player.set_marker("x'")
@@ -20,8 +23,8 @@ describe Player do
   end
 
   it "gets the players current move" do
-    test_player.get_current_move("1")
-    expect(test_player.current_move).to eq("1")
+    test_player.update_move("1")
+    expect(test_player.move).to eq("1")
   end
 
 end

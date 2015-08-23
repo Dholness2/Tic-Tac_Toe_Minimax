@@ -56,7 +56,7 @@ describe Board do
   end
 
   it " check for diagnol wins(bottom_up)" do
-    [2,4,6].each{|move| test_board.move("y",move)}
-    expect(test_board.diagnoal_check).to eq("y")
+    [2,4,6].each{|move| test_board.move("o",move)}
+    expect(test_board.diagnoal_check).to eq("o")
   end
 end
