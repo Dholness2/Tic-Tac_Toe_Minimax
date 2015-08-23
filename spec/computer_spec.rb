@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe Computer do
   let(:test_board) { test_board = Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
-  let (:test_computer) { test_computer= Computer.new(:max_player => "o",:mini_player => "x")}
+  let (:test_computer) { test_computer= Computer.new(:max_marker => "o",:mini_marker => "x")}
 
   it "Computer.new returns a new terminal object" do
     expect(test_computer).to be_a Computer

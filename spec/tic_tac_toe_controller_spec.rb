@@ -3,7 +3,7 @@ describe TicTacToeController do
   let(:user_marker) {"x"}
   let(:computer_marker){"o"}
   let(:test_board) { Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
-  let(:test_computer) {Computer.new(:max_player => "o",:mini_player => "x")}
+  let(:test_computer) {Computer.new(:max_marker => "o",:mini_marker => "x")}
   let(:test_view) { TerminalView.new()}
   let(:test_controller) { TicTacToeController.new(:board_size=> 3,:empty_position_placeholder=>"_",:view =>test_view,:board => test_board,:computer=> test_computer)}
 
@@ -22,7 +22,7 @@ describe TicTacToeController do
   it "should take the computer next move and update the board"do
     test_board.move(user_marker,0)
     test_controller.get_computer_move
-    expect(test_board.board[2][2]).to eq(computer_marker)
+    expect(test_board.board[1][1]).to eq(computer_marker)
   end
 
   it "should return true incase of a win"do
