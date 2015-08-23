@@ -1,41 +1,42 @@
 class Computer
   attr_accessor :move
   def initialize (args ={})
-    @maximizing_player = args[:max_player]
-    @minimizing_player = args[:mini_player]
+    @maximizing_marker = args[:max_marker]
+    @minimizing_marker = args[:mini_marker]
     @move
   end
 
-  def score (depth,board)
-    return 10 - depth  if board.winner == @maximizing_player
-    return depth - 10  if board.winner == @minimizing_player
+
+def score (depth,board)
+    return 10 - depth  if board.winner == @maximizing_marker
+    return depth - 10  if board.winner == @minimizing_marker
     draw = 0
   end
 
-  def minimax (board,depth, maximizing_player)
-    return score(depth,board) if board.winner ||  depth == 9
-    scores = []
-    moves = []
-    if maximizing_player
-      board.available_moves.each do |possible_move|
-        board.move(@maximizing_player,possible_move)
-        scores.push minimax(board,depth+1,false)
-        moves.push possible_move
-        board.undo_move(possible_move)
-      end
+  def best_move (scores,moves,maximizing)
+    if maximizing
       max_score_index = scores.each_with_index.max[1]
       @move = moves[max_score_index]
       return scores[max_score_index]
     else
-      board.available_moves.each do |possible_move|
-        board.move(@minimizing_player,possible_move)
-        scores.push minimax(board,depth+1,true)
-        moves.push possible_move
-        board.undo_move(possible_move)
-      end
       min_score_index = scores.each_with_index.min[1]
       @move = moves[min_score_index]
       return scores[min_score_index]
     end
+  end
+
+  def minimax (board,depth, maximizing)
+    return score(depth,board) if board.winner ||  depth == 8
+    scores = []
+    moves = []
+    board.available_moves.each do |possible_move|
+      board.move(@maximizing_marker,possible_move) if maximizing
+      board.move(@minimizing_marker,possible_move) if !maximizing
+      scores.push minimax(board,depth+1,false) if maximizing
+      scores.push minimax(board,depth+1,true) if !maximizing
+      moves.push possible_move
+      board.undo_move(possible_move)
+    end
+    best_move(scores,moves,maximizing)
   end
 end
