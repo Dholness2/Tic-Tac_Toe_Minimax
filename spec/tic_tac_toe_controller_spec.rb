@@ -1,6 +1,6 @@
 require 'spec_helper'
 describe TicTacToeController do
-  let(:test_player) {Player.new(:marker=> "x")}
+  let(:test_player) {HumanPlayer.new(:marker=> "x")}
   let(:test_board) { Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
   let(:test_computer) {Computer.new(:max_marker => "o",:mini_marker => "x")}
   let(:test_view) { TerminalView.new()}

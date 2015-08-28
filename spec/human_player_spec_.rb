@@ -27,4 +27,9 @@ describe Player do
     expect(test_player.move).to eq("1")
   end
 
+  it "gets the players next move" do
+    test_view.input = StringIO.new("1")
+    test_view.output = StringIO.new()
+    test_player.get_player_move
+  end
 end

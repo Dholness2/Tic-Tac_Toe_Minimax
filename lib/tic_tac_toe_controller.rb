@@ -22,7 +22,7 @@ class TicTacToeController
     player.update_move(view.get_move)
     until update_board(player.marker,player.move)
       view.display "invalid move, Select again?"
-      player.set_move(view.get_move)
+      player.update_move(view.get_move)
     end
   end
 
