@@ -23,17 +23,17 @@ class TerminalView
   end
 
   def get_ans
-    input.gets
+    input.gets.chomp
   end
 
   def get_move
-    move = input.gets
+    move = input.gets.chomp
     return (move.to_i-1) if move =~/^[1-9]$/
     nil
   end
 
   def board board
     display_board = board.map{|row| row.join("|")+"\n"}.join("")
-    puts display_board
+    output.puts display_board
   end
 end

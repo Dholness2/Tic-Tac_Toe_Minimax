@@ -106,34 +106,46 @@ describe Computer do
     scores = [6,5,4]
     moves  = [1,2,3]
     expect(test_computer.best_move(scores,moves,true)).to eq(6)
-    expect(test_computer.move).to eq(1)
+    expect(test_computer.current_move).to eq(1)
   end
 
   it " should select the lowest scoring move for minimizing " do
     scores = [6,5,4]
     moves  = [1,2,3]
     expect(test_computer.best_move(scores,moves,false)).to eq(4)
-    expect(test_computer.move).to eq(3)
+    expect(test_computer.current_move).to eq(3)
   end
 
   it" calculates highest move and score for maxmizing player Depth:3" do
     [0,4].each{|move| test_board.move(test_computer.maximizing_marker,move)}
     [3].each{|move| test_board.move(test_computer.minimizing_marker,move)}
     expect(test_computer.minimax(test_board,3,true)).to eq(6)
-    expect(test_computer.move).to eq(8)
+    expect(test_computer.current_move).to eq(8)
   end
 
   it" calculates highest move and score for miniizing player Depth:3" do
     [0,4].each{|move| test_board.move(test_computer.minimizing_marker,move)}
     [3,].each{|move| test_board.move(test_computer.maximizing_marker,move)}
     expect(test_computer.minimax(test_board,3,false)).to eq(-6)
-    expect(test_computer.move).to eq(8)
+    expect(test_computer.current_move).to eq(8)
   end
 
   it " blocks min player" do
     [0,3].each{|move| test_board.move(test_computer.minimizing_marker,move)}
     [1].each{|move| test_board.move(test_computer.maximizing_marker,move)}
     expect(test_computer.minimax(test_board,3,true)).to eq(-3)
-    expect(test_computer.move).to eq(6)
+    expect(test_computer.current_move).to eq(6)
+  end
+
+  it " sets the computers's name" do
+    expect(test_computer.set_name("donovan")).to eq("donovan")
+    expect(test_computer.name).to eq("donovan")
+  end
+
+it " get the computers next move" do
+  [0,3].each{|move| test_board.move(test_computer.minimizing_marker,move)}
+  [4].each{|move| test_board.move(test_computer.maximizing_marker,move)}
+  test_computer.get_move(test_board)
+  expect(test_board.board[2][0]).to eq(test_computer.maximizing_marker)
   end
 end
