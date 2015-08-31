@@ -6,6 +6,12 @@ describe TerminalView do
     expect(test_view).to be_a TerminalView
   end
 
+  it "it passes string command to cleaer the terminal" do
+    test_view.output =StringIO.new()
+    test_view.clear
+    expect(test_view.output.string).to eq("\e[H\e[2J\n")
+  end
+
   it "puts welcome mesaage " do
     test_view.output = StringIO.new()
     test_view.welcome
@@ -22,6 +28,11 @@ describe TerminalView do
     test_view.output = StringIO.new()
     test_view.display "test string"
     expect(test_view.output.string).to eq("test string\n")
+  end
+
+  it "gets the users answer from the terminal and returns the input " do
+    test_view.input = StringIO.new("donovan")
+    expect(test_view.get_ans).to eq("donovan")
   end
 
   it "gets the users input and returns the string  equilent interger value -1" do
