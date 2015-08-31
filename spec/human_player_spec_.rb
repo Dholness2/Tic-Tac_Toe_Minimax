@@ -43,6 +43,4 @@ describe Player do
     expect(test_player.validate_move(50,test_board)).to eq(nil)
     expect(test_player.validate_move)("g",test_board)).to eq(nil)
   end
-
-
 end
