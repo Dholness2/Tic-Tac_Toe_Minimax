@@ -1,6 +1,7 @@
 require 'spec_helper'
 describe Player do
   let(test_player){Player.new}
+  let(:test_board) { Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
   it " returns a new player object" do
     expect(test_computer).to be_a Computer
   end
@@ -30,6 +31,18 @@ describe Player do
   it "gets the players next move" do
     test_view.input = StringIO.new("1")
     test_view.output = StringIO.new()
-    test_player.get_player_move
+    test_player.get_move(test_board)
+    expect(test_board.board[0][0]).to eq(test_.player.marker)
   end
+
+  it "validates the user has submited the correct move" do
+    expect(test_player.validate_move(1,test_board)).to eq(true)
+  end
+
+  it "validates the use submited an incorrect move" do
+    expect(test_player.validate_move(50,test_board)).to eq(nil)
+    expect(test_player.validate_move)("g",test_board)).to eq(nil)
+  end
+
+
 end
