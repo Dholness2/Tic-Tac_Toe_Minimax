@@ -1,12 +1,13 @@
 require 'spec_helper'
 describe TerminalView do
   let(:test_view){TerminalView.new }
+  let(:test_board) { Board.new(:board_size=> 3,:empty_position_placeholder=>"_") }
 
   it " TerminalView.new returns a new terminal object" do
     expect(test_view).to be_a TerminalView
   end
 
-  it "it passes string command to cleaer the terminal" do
+  it "it passes string command to clear the terminal" do
     test_view.output =StringIO.new()
     test_view.clear
     expect(test_view.output.string).to eq("\e[H\e[2J\n")
@@ -22,6 +23,12 @@ describe TerminalView do
     test_view.output =StringIO.new()
     test_view.key
     expect(test_view.output.string).to eq("Move key:\n1|2|3\n4|5|6\n7|8|9\n \n")
+  end
+
+  it "displays the board " do
+    test_view.output =StringIO.new()
+    test_view.board test_board.board
+    expect(test_view.output.string).to eq("_|_|_\n_|_|_\n_|_|_\n")
   end
 
   it "it display inputs to the user terminal" do
